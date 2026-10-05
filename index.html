@@ -3,93 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Calculator</title>
+    <title>Neon Glassmorphism Calculator</title>
     <style>
         body {
+            background-color: #090d16;
+            color: white;
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #0a0a0a;
-            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow: hidden;
         }
         .calculator {
             background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            width: 300px;
         }
         .display {
-            width: 100%;
-            height: 60px;
             background: rgba(255, 255, 255, 0.2);
-            border: none;
             border-radius: 10px;
+            padding: 10px;
             font-size: 2em;
             text-align: right;
-            padding: 10px;
-            color: #00ffcc;
+            margin-bottom: 10px;
+            height: 50px;
+            overflow: hidden;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
         }
         button {
-            width: 60px;
-            height: 60px;
-            margin: 10px;
+            background: rgba(255, 255, 255, 0.2);
             border: none;
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #00ffcc;
+            padding: 20px;
             font-size: 1.5em;
+            color: #00ffff;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
+            transition: background 0.3s, transform 0.1s;
         }
         button:hover {
-            background: rgba(0, 255, 255, 0.3);
-            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        .history {
+            max-height: 100px;
+            overflow-y: auto;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
     <div class="calculator">
-        <input type="text" class="display" id="display" disabled />
-        <div>
+        <div class="display" id="display">0</div>
+        <div class="buttons">
             <button onclick="clearDisplay()">C</button>
+            <button onclick="backspace()">←</button>
+            <button onclick="appendToDisplay('%')">%</button>
+            <button onclick="appendToDisplay('/')">÷</button>
             <button onclick="appendToDisplay('7')">7</button>
             <button onclick="appendToDisplay('8')">8</button>
             <button onclick="appendToDisplay('9')">9</button>
-            <button onclick="appendToDisplay('/')">/</button>
-        </div>
-        <div>
+            <button onclick="appendToDisplay('*')">×</button>
             <button onclick="appendToDisplay('4')">4</button>
             <button onclick="appendToDisplay('5')">5</button>
             <button onclick="appendToDisplay('6')">6</button>
-            <button onclick="appendToDisplay('*')">*</button>
-        </div>
-        <div>
+            <button onclick="appendToDisplay('-')">−</button>
             <button onclick="appendToDisplay('1')">1</button>
             <button onclick="appendToDisplay('2')">2</button>
             <button onclick="appendToDisplay('3')">3</button>
-            <button onclick="appendToDisplay('-')">-</button>
-        </div>
-        <div>
-            <button onclick="appendToDisplay('0')">0</button>
-            <button onclick="calculate()">=</button>
             <button onclick="appendToDisplay('+')">+</button>
+            <button onclick="appendToDisplay('0')">0</button>
+            <button onclick="appendToDisplay('(')">(</button>
+            <button onclick="appendToDisplay(')')">)</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendToDisplay('√')">√</button>
         </div>
+        <div class="history" id="history"></div>
     </div>
     <script>
+        let display = document.getElementById('display');
+        let history = document.getElementById('history');
+        let currentInput = '';
+
         function appendToDisplay(value) {
-            document.getElementById('display').value += value;
+            currentInput += value;
+            display.innerText = currentInput;
         }
+
         function clearDisplay() {
-            document.getElementById('display').value = '';
+            currentInput = '';
+            display.innerText = '0';
         }
+
+        function backspace() {
+            currentInput = currentInput.slice(0, -1);
+            display.innerText = currentInput || '0';
+        }
+
         function calculate() {
-            const display = document.getElementById('display');
             try {
-                display.value = eval(display.value);
+                let result = eval(currentInput.replace(/√/g, 'Math.sqrt'));
+                history.innerHTML += '<div>' + currentInput + ' = ' + result + '</div>';
+                currentInput = result.toString();
+                display.innerText = currentInput;
             } catch (error) {
-                display.value = 'Error';
+                display.innerText = 'Error';
             }
         }
     </script>
