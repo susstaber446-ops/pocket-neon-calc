@@ -3,228 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Cyber Neon Calculator</title>
-=======
-    <title>Glassmorphism Calculator</title>
->>>>>>> d175d432cf63a1b902fa412bfb7d7861f8bcfa63
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-<<<<<<< HEAD
-            background: radial-gradient(circle, rgba(0,0,0,0.8), rgba(0,0,0,1));
-            font-family: Arial, sans-serif;
-=======
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            color: #fff;
-            font-family: 'Arial', sans-serif;
->>>>>>> d175d432cf63a1b902fa412bfb7d7861f8bcfa63
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #0f172a, #020617);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #f8fafc;
+            padding: 16px;
         }
         .calculator {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-<<<<<<< HEAD
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 24px;
+            padding: 24px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.2), inset 0 0 15px rgba(56, 189, 248, 0.05);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .brand {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #38bdf8;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px #22c55e;
+        }
+        .display-container {
+            background: rgba(2, 6, 23, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            text-align: right;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        .equation {
+            font-size: 14px;
+            color: #64748b;
+            min-height: 20px;
+            margin-bottom: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .display {
-            background: rgba(0, 0, 0, 0.5);
-            color: #00ffcc;
-            font-size: 2em;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            text-align: right;
-=======
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            font-size: 2.4em;
+            font-weight: 700;
+            color: #38bdf8;
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
-        .display {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 10px;
-            font-size: 2em;
-            text-align: right;
-            margin-bottom: 10px;
->>>>>>> d175d432cf63a1b902fa412bfb7d7861f8bcfa63
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
         }
         button {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-<<<<<<< HEAD
-            color: #00ffcc;
-            padding: 15px;
-            margin: 5px;
-            border-radius: 10px;
-=======
-            border-radius: 10px;
-            padding: 15px;
-            font-size: 1.5em;
-            margin: 5px;
->>>>>>> d175d432cf63a1b902fa412bfb7d7861f8bcfa63
+            background: rgba(30, 41, 59, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            color: #f1f5f9;
+            font-size: 1.25em;
+            font-weight: 600;
+            padding: 16px 0;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.15s ease-in-out;
+            user-select: none;
+            backdrop-filter: blur(8px);
         }
         button:hover {
-<<<<<<< HEAD
-            background: rgba(0, 255, 255, 0.3);
-=======
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+            transform: translateY(-1px);
         }
-        .neon {
-            color: #00ffcc;
-            text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+        button:active {
+            transform: translateY(1px);
+            background: rgba(56, 189, 248, 0.25);
         }
-        .history {
-            margin-top: 20px;
-            font-size: 0.8em;
-            color: #ccc;
->>>>>>> d175d432cf63a1b902fa412bfb7d7861f8bcfa63
+        button.op {
+            color: #38bdf8;
+            font-weight: 700;
+        }
+        button.clear {
+            color: #f87171;
+        }
+        button.equals {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: #ffffff;
+            border-color: #38bdf8;
+            box-shadow: 0 0 16px rgba(2, 132, 199, 0.4);
+        }
+        button.equals:hover {
+            background: linear-gradient(135deg, #0369a1, #0284c7);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+        }
+        .history-card {
+            background: rgba(2, 6, 23, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 12px 16px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+        .history-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #94a3b8;
+            padding: 3px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        .history-item .res {
+            color: #38bdf8;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="calculator">
-        <div class="display" id="display">0</div>
-<<<<<<< HEAD
-        <div>
-            <button onclick="appendToDisplay('7')">7</button>
-            <button onclick="appendToDisplay('8')">8</button>
-            <button onclick="appendToDisplay('9')">9</button>
-            <button onclick="appendToDisplay('/')">/</button>
+        <div class="header">
+            <span class="brand">Cyber Neon Calc</span>
+            <div class="status-dot"></div>
         </div>
-        <div>
-            <button onclick="appendToDisplay('4')">4</button>
-            <button onclick="appendToDisplay('5')">5</button>
-            <button onclick="appendToDisplay('6')">6</button>
-            <button onclick="appendToDisplay('*')">*</button>
+        <div class="display-container">
+            <div class="equation" id="equation">Ready</div>
+            <div class="display" id="display">0</div>
         </div>
-        <div>
-            <button onclick="appendToDisplay('1')">1</button>
-            <button onclick="appendToDisplay('2')">2</button>
-            <button onclick="appendToDisplay('3')">3</button>
-            <button onclick="appendToDisplay('-')">-</button>
+        <div class="grid">
+            <button class="clear" onclick="clearAll()">C</button>
+            <button class="op" onclick="append('(')">(</button>
+            <button class="op" onclick="append(')')">)</button>
+            <button class="op" onclick="append('/')">÷</button>
+
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button class="op" onclick="append('*')">×</button>
+
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button class="op" onclick="append('-')">−</button>
+
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button class="op" onclick="append('+')">+</button>
+
+            <button onclick="append('0')">0</button>
+            <button onclick="append('.')">.</button>
+            <button class="op" onclick="calcSqrt()">√</button>
+            <button class="equals" onclick="compute()">=</button>
         </div>
-        <div>
-            <button onclick="appendToDisplay('0')">0</button>
-            <button onclick="appendToDisplay('.')">.</button>
-            <button onclick="calculate()">=</button>
-            <button onclick="appendToDisplay('+')">+</button>
+        <div class="history-card">
+            <div class="history-title">Tape History</div>
+            <div id="history-list"></div>
         </div>
-        <div>
-            <button onclick="appendToDisplay('(')">(</button>
-            <button onclick="appendToDisplay(')')">)</button>
-            <button onclick="appendToDisplay('Math.sqrt(')">√</button>
-            <button onclick="clearDisplay()">C</button>
-        </div>
-        <div id="history"></div>
-=======
-        <button class="neon" onclick="clearDisplay()">C</button>
-        <button class="neon" onclick="appendToDisplay('(')">(</button>
-        <button class="neon" onclick="appendToDisplay(')')">)</button>
-        <button class="neon" onclick="appendToDisplay('/')">&divide;</button>
-        <button class="neon" onclick="appendToDisplay('7')">7</button>
-        <button class="neon" onclick="appendToDisplay('8')">8</button>
-        <button class="neon" onclick="appendToDisplay('9')">9</button>
-        <button class="neon" onclick="appendToDisplay('*')">&times;</button>
-        <button class="neon" onclick="appendToDisplay('4')">4</button>
-        <button class="neon" onclick="appendToDisplay('5')">5</button>
-        <button class="neon" onclick="appendToDisplay('6')">6</button>
-        <button class="neon" onclick="appendToDisplay('-')">-</button>
-        <button class="neon" onclick="appendToDisplay('1')">1</button>
-        <button class="neon" onclick="appendToDisplay('2')">2</button>
-        <button class="neon" onclick="appendToDisplay('3')">3</button>
-        <button class="neon" onclick="appendToDisplay('+')">+</button>
-        <button class="neon" onclick="appendToDisplay('0')">0</button>
-        <button class="neon" onclick="appendToDisplay('%')">%</button>
-        <button class="neon" onclick="calculateSquareRoot()">√</button>
-        <button class="neon" onclick="calculateResult()">=</button>
-        <div class="history" id="history"></div>
->>>>>>> d175d432cf63a1b902fa412bfb7d7861f8bcfa63
     </div>
+
     <script>
-        let display = document.getElementById('display');
-        let history = document.getElementById('history');
-<<<<<<< HEAD
-        let currentInput = '';
+        const displayEl = document.getElementById('display');
+        const equationEl = document.getElementById('equation');
+        const historyList = document.getElementById('history-list');
+        let expr = '';
 
-        function appendToDisplay(value) {
-            currentInput += value;
-            display.innerText = currentInput;
+        function updateUI() {
+            displayEl.innerText = expr || '0';
         }
 
-        function clearDisplay() {
-            currentInput = '';
-            display.innerText = '0';
+        function append(val) {
+            expr += val;
+            updateUI();
         }
 
-        function calculate() {
+        function clearAll() {
+            expr = '';
+            equationEl.innerText = 'Ready';
+            updateUI();
+        }
+
+        function calcSqrt() {
             try {
-                let result = eval(currentInput.replace(/Math.sqrt/g, 'Math.sqrt'));
-                history.innerHTML += '<div>' + currentInput + ' = ' + result + '</div>';
-                currentInput = result.toString();
-                display.innerText = currentInput;
-=======
-
-        function appendToDisplay(value) {
-            if (display.innerText === '0') {
-                display.innerText = '';
+                if (!expr) return;
+                const evaluated = Function('"use strict";return (' + expr + ')')();
+                const res = Math.sqrt(evaluated);
+                addHistory('√(' + expr + ')', res);
+                equationEl.innerText = '√(' + expr + ')';
+                expr = String(res);
+                updateUI();
+            } catch (e) {
+                displayEl.innerText = 'Error';
             }
-            display.innerText += value;
         }
 
-        function clearDisplay() {
-            display.innerText = '0';
-        }
-
-        function calculateResult() {
+        function compute() {
             try {
-                let result = eval(display.innerText);
-                history.innerHTML += display.innerText + ' = ' + result + '<br>';
-                display.innerText = result;
->>>>>>> d175d432cf63a1b902fa412bfb7d7861f8bcfa63
-            } catch (error) {
-                display.innerText = 'Error';
+                if (!expr) return;
+                const sanitized = expr.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+                const result = Function('"use strict";return (' + sanitized + ')')();
+                addHistory(expr, result);
+                equationEl.innerText = expr + ' =';
+                expr = String(result);
+                updateUI();
+            } catch (err) {
+                displayEl.innerText = 'Error';
             }
         }
 
-<<<<<<< HEAD
-        window.addEventListener('keydown', function(event) {
-            if (event.key >= '0' && event.key <= '9') {
-                appendToDisplay(event.key);
-            } else if (event.key === 'Enter') {
-                calculate();
-            } else if (event.key === 'Backspace') {
-                currentInput = currentInput.slice(0, -1);
-                display.innerText = currentInput || '0';
-=======
-        function calculateSquareRoot() {
-            try {
-                let result = Math.sqrt(eval(display.innerText));
-                history.innerHTML += '√' + display.innerText + ' = ' + result + '<br>';
-                display.innerText = result;
-            } catch (error) {
-                display.innerText = 'Error';
-            }
+        function addHistory(eq, res) {
+            const row = document.createElement('div');
+            row.className = 'history-item';
+            row.innerHTML = '<span>' + eq + '</span><span class="res">' + res + '</span>';
+            historyList.prepend(row);
         }
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key >= '0' && event.key <= '9') {
-                appendToDisplay(event.key);
-            } else if (event.key === 'Enter') {
-                calculateResult();
-            } else if (event.key === 'Backspace') {
-                clearDisplay();
-            } else if (event.key === 'Escape') {
-                clearDisplay();
-            } else if (['+', '-', '*', '/'].includes(event.key)) {
-                appendToDisplay(event.key);
->>>>>>> d175d432cf63a1b902fa412bfb7d7861f8bcfa63
-            }
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') append(e.key);
+            else if (['+', '-', '*', '/', '(', ')', '.'].includes(e.key)) append(e.key);
+            else if (e.key === 'Enter') compute();
+            else if (e.key === 'Backspace') {
+                expr = expr.slice(0, -1);
+                updateUI();
+            } else if (e.key === 'Escape') clearAll();
         });
     </script>
 </body>
