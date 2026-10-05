@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyber Neon Calculator</title>
-    <!-- Minor update to trigger a commit -->
-    <!-- Another update to trigger a commit -->
     <style>
         body {
             display: flex;
@@ -20,6 +18,7 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
         }
         .display {
             background: rgba(0, 0, 0, 0.5);
@@ -75,7 +74,7 @@
         <div>
             <button onclick="appendToDisplay('(')">(</button>
             <button onclick="appendToDisplay(')')">)</button>
-            <button onclick="appendToDisplay('sqrt(')">√</button>
+            <button onclick="appendToDisplay('Math.sqrt(')">√</button>
             <button onclick="clearDisplay()">C</button>
         </div>
         <div id="history"></div>
@@ -97,7 +96,7 @@
 
         function calculate() {
             try {
-                let result = eval(currentInput);
+                let result = eval(currentInput.replace(/Math.sqrt/g, 'Math.sqrt'));
                 history.innerHTML += '<div>' + currentInput + ' = ' + result + '</div>';
                 currentInput = result.toString();
                 display.innerText = currentInput;
@@ -112,9 +111,8 @@
             } else if (event.key === 'Enter') {
                 calculate();
             } else if (event.key === 'Backspace') {
-                clearDisplay();
-            } else if ('+-*/()'.includes(event.key)) {
-                appendToDisplay(event.key);
+                currentInput = currentInput.slice(0, -1);
+                display.innerText = currentInput || '0';
             }
         });
     </script>
